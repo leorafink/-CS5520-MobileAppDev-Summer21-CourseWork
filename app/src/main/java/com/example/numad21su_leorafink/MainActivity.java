@@ -17,11 +17,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void displayInfo(View view) {
         //EditText dollarText = findViewById(R.id.dollarText);
-        TextView textView = findViewById(R.id.textView);
+        TextView textView2 = findViewById(R.id.textView2);
        // if (!dollarText.getText().toString().equals("")) {
        //     Float dollarValue = Float.valueOf(dollarText.getText().toString());
       //      Float euroValue = dollarValue * 0.85F;
-            textView.setText("Leora Fink");
+            textView2.setText("Leora Fink\nfink.le@northeastern.edu");
        // } else {
        //     textView.setText(R.string.no_value_string);
       //  }
