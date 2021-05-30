@@ -16,15 +16,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void displayInfo(View view) {
-        //EditText dollarText = findViewById(R.id.dollarText);
+
         TextView textView2 = findViewById(R.id.textView2);
-       // if (!dollarText.getText().toString().equals("")) {
-       //     Float dollarValue = Float.valueOf(dollarText.getText().toString());
-      //      Float euroValue = dollarValue * 0.85F;
-            textView2.setText("Leora Fink\nfink.le@northeastern.edu");
-       // } else {
-       //     textView.setText(R.string.no_value_string);
-      //  }
+
+        textView2.setText("Leora Fink\nfink.le@northeastern.edu");
+
     }
+    public void nextActivity(View view){
+        setContentView(R.layout.contentbuttons);
+    }
+
+    public void displayPressedA(View view) {
+        TextView textView3 = findViewById(R.id.textView3);
+        textView3.setText("Pressed: A");
+    }
+    public void displayPressedB(View view) {
+        TextView textView3 = findViewById(R.id.textView3);
+        textView3.setText("Pressed: B");
+    }
+    public void displayPressedC(View view) {
+        TextView textView3 = findViewById(R.id.textView3);
+        textView3.setText("Pressed: C");
+    }
+    public void displayPressedD(View view) {
+        TextView textView3 = findViewById(R.id.textView3);
+        textView3.setText("Pressed: D");
+    }
+    public void displayPressedE(View view) {
+        TextView textView3 = findViewById(R.id.textView3);
+        textView3.setText("Pressed: E");
+    }
+    public void displayPressedF(View view) {
+        TextView textView3 = findViewById(R.id.textView3);
+        textView3.setText("Pressed: F");
+    }
+
 
 }
