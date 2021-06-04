@@ -3,6 +3,13 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        config {
+            storePassword 'redred'
+            keyAlias 'myKey'
+            keyPassword 'redred'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
