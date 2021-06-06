@@ -7,11 +7,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.URLUtil;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -78,9 +81,26 @@ public class RecycleActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         String name_Text = nameInput.getText().toString();
                         String url_Text = urlInput.getText().toString();
-                        addItem(pos, name_Text, url_Text);
-                        Snackbar.make(v, "Link successfully created", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
+                        if (name_Text.length() < 1 || url_Text.length() < 1) {
+                            Snackbar.make(v, "Please fill in both fields, try again", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+                            //dialog.cancel();
+                        } else {
+
+                            // Uri uri = Uri.parse(url_Text);
+                            if (!url_Text.startsWith("http://") && !url_Text.startsWith("https://")) {
+                                url_Text = "http://" + url_Text;
+                            }
+                            if (URLUtil.isValidUrl(url_Text)) {
+                                addItem(pos, name_Text, url_Text);
+                                Snackbar.make(v, "Link successfully created", Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null).show();
+                            } else {
+                                Snackbar.make(v, "invalid url - please try again", Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null).show();
+                            }
+                        }
+
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -197,10 +217,9 @@ public class RecycleActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 //attributions bond to the item has been changed
-                itemList.get(position).onItemClick(position);
-
-
-                rviewAdapter.notifyItemChanged(position);
+                Uri uri = Uri.parse(itemList.get(position).getUrl());
+                Intent urlActivity = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(urlActivity);
             }
 
         };
