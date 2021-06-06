@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -41,6 +42,8 @@ public class RecycleActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int pos = 0;
                 addItem(pos);
+                Snackbar.make(v, "Link successfully created", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
 
