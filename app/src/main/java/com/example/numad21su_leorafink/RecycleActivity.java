@@ -14,11 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -57,7 +59,7 @@ public class RecycleActivity extends AppCompatActivity {
                 nameInput.setHint("Name");
               //  builder.setView(nameInput);
                 final EditText urlInput = new EditText(v.getContext());
-                urlInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_URI);
+                urlInput.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
                 urlInput.setHint("URL");
 
                 LinearLayout layout = new LinearLayout(v.getContext());
@@ -90,10 +92,6 @@ public class RecycleActivity extends AppCompatActivity {
 
                 builder.show();
 
-
-
-//                Snackbar.make(v, "Link successfully created", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
             }
         });
 
@@ -175,11 +173,14 @@ public class RecycleActivity extends AppCompatActivity {
             }
         }
         // The first time to opne this Activity
-        else {
-            ItemCard item1 = new ItemCard("Gmail", "www.gmail.com");
-            itemList.add(item1);
-
-        }
+//        else {
+////            ItemCard item1 = new ItemCard("Gmail", "www.gmail.com");
+////            itemList.add(item1);
+//            TextView textView = new TextView(this);
+//            textView.setText("No Links have been Saved yet!");
+//
+//
+//        }
 
     }
 
@@ -198,16 +199,10 @@ public class RecycleActivity extends AppCompatActivity {
                 //attributions bond to the item has been changed
                 itemList.get(position).onItemClick(position);
 
+
                 rviewAdapter.notifyItemChanged(position);
             }
 
-//            @Override
-//            public void onCheckBoxClick(int position) {
-//                //attributions bond to the item has been changed
-//                itemList.get(position).onCheckBoxClick(position);
-//
-//                rviewAdapter.notifyItemChanged(position);
-//            }
         };
         rviewAdapter.setOnItemClickListener(itemClickListener);
 
