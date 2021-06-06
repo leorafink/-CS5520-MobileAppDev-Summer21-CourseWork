@@ -1,12 +1,19 @@
 package com.example.numad21su_leorafink;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -41,9 +48,52 @@ public class RecycleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int pos = 0;
-                addItem(pos);
-                Snackbar.make(v, "Link successfully created", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setTitle("Add new URL");
+                // Set up the input
+                final EditText nameInput = new EditText(v.getContext());
+                nameInput.setInputType(InputType.TYPE_CLASS_TEXT);
+                nameInput.setHint("Name");
+              //  builder.setView(nameInput);
+                final EditText urlInput = new EditText(v.getContext());
+                urlInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_URI);
+                urlInput.setHint("URL");
+
+                LinearLayout layout = new LinearLayout(v.getContext());
+                layout.setOrientation(LinearLayout.VERTICAL);
+                layout.addView(nameInput);
+                layout.addView(urlInput);
+                builder.setView(layout);
+
+
+               // builder.setView(nameInput, urlInput);
+
+
+// Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String name_Text = nameInput.getText().toString();
+                        String url_Text = urlInput.getText().toString();
+                        addItem(pos, name_Text, url_Text);
+                        Snackbar.make(v, "Link successfully created", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+
+
+
+//                Snackbar.make(v, "Link successfully created", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
             }
         });
 
@@ -167,8 +217,8 @@ public class RecycleActivity extends AppCompatActivity {
 
     }
 
-    private void addItem(int position) {
-        itemList.add(position, new ItemCard("yahoo", "yahoo.com"));
+    private void addItem(int position, String namee, String url) {
+        itemList.add(position, new ItemCard(namee, url));
         Toast.makeText(RecycleActivity.this, "Add an item", Toast.LENGTH_SHORT).show();
 
         rviewAdapter.notifyItemInserted(position);
