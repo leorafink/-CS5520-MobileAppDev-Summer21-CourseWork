@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
     public void linkCollectorPage(View view){
         Intent intentClick = new Intent(this, RecycleActivity.class);
         startActivity(intentClick);
+       // setContentView(R.layout.linkcollector);
 
     }
 

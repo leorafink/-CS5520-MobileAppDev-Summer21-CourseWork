@@ -17,6 +17,7 @@ import java.util.Random;
 public class RecycleActivity extends AppCompatActivity {
     //Creating the essential parts needed for a Recycler view to work: RecyclerView, Adapter, LayoutManager
     private ArrayList<ItemCard> itemList = new ArrayList<>();
+    ;
 
     private RecyclerView recyclerView;
     private RviewAdapter rviewAdapter;
