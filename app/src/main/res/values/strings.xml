@@ -15,4 +15,8 @@
     <string name="url">url</string>
     <string name="textname">textName</string>
     <string name="saved_links">Saved Links:</string>
+    <string name="find_location">FIND LOCATION</string>
+    <string name="_0_0">0.0</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
 </resources>
