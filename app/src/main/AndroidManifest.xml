@@ -25,6 +25,9 @@
         <activity android:name=".ButtonActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden">
         </activity>
+        <activity android:name=".LocatorActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden">
+        </activity>
     </application>
 
 </manifest>
