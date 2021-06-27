@@ -41,4 +41,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intentClick);
     }
 
+    public void webServicePage(View view) {
+        Intent intentClick = new Intent(this, WebServiceActivity.class);
+        startActivity(intentClick);
+    }
+
 }

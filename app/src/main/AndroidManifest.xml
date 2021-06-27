@@ -4,6 +4,8 @@
     
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
 
     <application
         android:allowBackup="true"
@@ -29,6 +31,9 @@
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden">
         </activity>
         <activity android:name=".LocatorActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden">
+        </activity>
+        <activity android:name=".WebServiceActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden">
         </activity>
     </application>
