@@ -19,4 +19,6 @@
     <string name="_0_0">0.0</string>
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
+    <string name="ping_web_service">PING WEB SERVICE</string>
+    <string name="enter_a_number_you_d_like_a_trivia_on">Enter a number you\'d like a trivia on</string>
 </resources>
