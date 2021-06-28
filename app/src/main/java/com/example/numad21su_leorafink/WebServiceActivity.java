@@ -57,7 +57,20 @@ public class WebServiceActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                     String str = new String(responseBody);
-                    mTitleTextView.setText(str);
+                    JSONObject jObject = null;
+                    try {
+                        jObject = new JSONObject(str);
+                    } catch (JSONException e) {
+                        Log.e(TAG,"JSONException");
+                        e.printStackTrace();
+                    }
+                    try {
+                        String jText = jObject.getString("text");
+                        mTitleTextView.setText(jText);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                   // mTitleTextView.setText();
                 }
 
                 @Override
