@@ -4,10 +4,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,12 +24,17 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Scanner;
 
+import cz.msebera.android.httpclient.Header;
+
+import static java.sql.DriverManager.println;
+
 public class WebServiceActivity extends AppCompatActivity {
 
     private static final String TAG = "WebServiceActivity";
 
     private EditText mURLEditText;
     private TextView mTitleTextView;
+    Button btn;
 
 
     @Override
@@ -35,15 +44,40 @@ public class WebServiceActivity extends AppCompatActivity {
 
         mURLEditText = (EditText)findViewById(R.id.URL_editText);
         mTitleTextView = (TextView)findViewById(R.id.result_textview);
+        btn = findViewById(R.id.button6);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+           // String url = mURLEditText.getText().toString();
+                String num = mURLEditText.getText().toString();
+                String url = "http://numbersapi.com/" + num + "/trivia/?json";
+            new AsyncHttpClient().get(url, new AsyncHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                    String str = new String(responseBody);
+                    mTitleTextView.setText(str);
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                    mTitleTextView.setText("Error in calling service");
+                }
+            });
+            }
+        });
+
 
     }
 
-    public void callWebserviceButtonHandler(View view){
-        PingWebServiceTask task = new PingWebServiceTask();
-        task.execute(mURLEditText.getText().toString()); // This is a security risk.  Don't let your user enter the URL in a real app.
+//    public void callWebserviceButtonHandler(View view){
+//        PingWebServiceTask task = new PingWebServiceTask();
+//        task.execute(mURLEditText.getText().toString()); // This is a security risk.  Don't let your user enter the URL in a real app.
+//
+//    }
 
-    }
-
+/*
 
 
     private class PingWebServiceTask  extends AsyncTask<String, Integer, String[]> {
@@ -78,6 +112,8 @@ public class WebServiceActivity extends AppCompatActivity {
                 JSONObject jObject = new JSONObject(resp);
                 String jText = jObject.getString("text");
                 Integer jNum = jObject.getInt("number");
+              //  println("TEXT: " + jText);
+//                Log.d("NUM", String.valueOf(jNum));
                 results[0] = jText;
                 results[1] = String.valueOf(jNum);
                 return results;
@@ -108,16 +144,19 @@ public class WebServiceActivity extends AppCompatActivity {
     }
 
 
-    /**
+    */
+/**
      * Helper function
      * @param is
      * @return
-     */
+     *//*
+
     private String convertStreamToString(InputStream is) {
         Scanner s = new Scanner(is).useDelimiter("\\A");
         return s.hasNext() ? s.next().replace(",", ",\n") : "";
     }
 
+*/
 
 }
 
