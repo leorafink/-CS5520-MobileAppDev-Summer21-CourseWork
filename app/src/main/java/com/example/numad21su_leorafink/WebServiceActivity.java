@@ -1,7 +1,9 @@
 package com.example.numad21su_leorafink;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -50,6 +52,12 @@ public class WebServiceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                ProgressDialog progress = new ProgressDialog(WebServiceActivity.this);
+                progress.setTitle("Loading");
+                progress.setMessage("Wait while loading...");
+                progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+                progress.show();
+
            // String url = mURLEditText.getText().toString();
                 String num = mURLEditText.getText().toString();
                 String url = "http://numbersapi.com/" + num + "/trivia/?json";
@@ -66,11 +74,12 @@ public class WebServiceActivity extends AppCompatActivity {
                     }
                     try {
                         String jText = jObject.getString("text");
+                        progress.dismiss();
                         mTitleTextView.setText(jText);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                   // mTitleTextView.setText();
+
                 }
 
                 @Override
